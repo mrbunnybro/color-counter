@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Button Counter</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .button-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      color: white;
+      transition: transform 0.1s;
+    }
+
+    .button-card button {
+      font-size: 1.2rem;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      background: rgba(0, 0, 0, 0.2);
+      width: 100%;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .button-card span {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .button-card:active {
+      transform: scale(0.97);
+    }
+
+    /* Color Themes */
+    .red {
+      background: #ef4444;
+    }
+
+    .green {
+      background: #22c55e;
+    }
+
+    .blue {
+      background: #3b82f6;
+    }
+
+    .yellow {
+      background: #facc15;
+      color: #333;
+    }
+
+    .yellow button {
+      color: #333;
+    }
+
+    .reset-btn {
+      background: #111827;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    .reset-btn:hover {
+      background: #1f2937;
+    }
+
+    @media (max-width: 400px) {
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Tap to Count</h1>
+    <div class="button-grid">
+      <div class="button-card red" onclick="increment('red')">
+        <button>Red</button>
+        <span id="red-count">0</span>
+      </div>
+      <div class="button-card green" onclick="increment('green')">
+        <button>Green</button>
+        <span id="green-count">0</span>
+      </div>
+      <div class="button-card blue" onclick="increment('blue')">
+        <button>Blue</button>
+        <span id="blue-count">0</span>
+      </div>
+      <div class="button-card yellow" onclick="increment('yellow')">
+        <button>Yellow</button>
+        <span id="yellow-count">0</span>
+      </div>
+    </div>
+
+    <button class="reset-btn" onclick="resetCounters()">Reset All</button>
+  </div>
+
+  <script>
+    const counters = {
+      red: 0,
+      green: 0,
+      blue: 0,
+      yellow: 0,
+    };
+
+    function increment(color) {
+      counters[color]++;
+      document.getElementById(`${color}-count`).textContent = counters[color];
+    }
+
+    function resetCounters() {
+      for (let key in counters) {
+        counters[key] = 0;
+        document.getElementById(`${key}-count`).textContent = '0';
+      }
+    }
+  </script>
+</body>
+</html>
